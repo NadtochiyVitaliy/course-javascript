@@ -44,6 +44,7 @@ function sumWithDefaults(a, b = 100) {
  */
 function returnFnResult(fn) {
   const fnResult = fn();
+
   return fnResult;
 }
 
