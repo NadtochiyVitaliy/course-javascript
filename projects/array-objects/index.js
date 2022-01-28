@@ -10,9 +10,9 @@
    forEach([1, 2, 3], (el) => console.log(el))
  */
 function forEach(array, fn) {
-  for (let i = 0; i < array.length; i++){
+  for (let i = 0; i < array.length; i++) {
     fn(array[i], i, array);
-  } 
+  }
 }
 
 forEach([1, 2, 3], (el) => console.log(el));
@@ -27,13 +27,13 @@ forEach([1, 2, 3], (el) => console.log(el));
    map([1, 2, 3], (el) => el ** 2) // [1, 4, 9]
  */
 function map(array, fn) {
-  let newArr = [];
+  const newArr = [];
 
-    for (let i = 0; i < array.length; i++) {
-        newArr.push(fn(array[i], i, array));
-    }
+  for (let i = 0; i < array.length; i++) {
+    newArr.push(fn(array[i], i, array));
+  }
 
-    return newArr;
+  return newArr;
 }
 
 map([1, 2, 3], (el) => el ** 2);
@@ -48,11 +48,11 @@ map([1, 2, 3], (el) => el ** 2);
    reduce([1, 2, 3], (all, current) => all + current) // 6
  */
 function reduce(array, fn, initial) {
-  let isInitial = initial !== undefined;
+  const isInitial = initial !== undefined;
   let result = isInitial ? initial : array[0];
 
   for (let i = isInitial ? 0 : 1; i < array.length; i++) {
-    result = fn(result, array[i], i , array);
+    result = fn(result, array[i], i, array);
   }
 
   return result;
@@ -69,15 +69,13 @@ reduce([1, 2, 3], (all, current) => all + current);
    upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
  */
 function upperProps(obj) {
-  let newArr = [];
+  const newArr = [];
 
-    for (let prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
-            newArr.push(prop.toUpperCase());
-        }
-    }
+  for (const prop in obj) {
+    newArr.push(prop.toUpperCase());
+  }
 
-    return newArr;
+  return newArr;
 }
 
 upperProps({ name: 'Сергей', lastName: 'Петров' });
@@ -96,10 +94,10 @@ upperProps({ name: 'Сергей', lastName: 'Петров' });
 function createProxy(obj) {
   return new Proxy(obj, {
     set(obj, key, value) {
-      obj[key] = value ** 2
+      obj[key] = value ** 2;
       return true;
-    }
-  })
+    },
+  });
 }
 
 const obj = createProxy({});
