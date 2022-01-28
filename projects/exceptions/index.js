@@ -16,7 +16,33 @@
    isAllTrue([1, 2, 3, 4, 5], n => n < 10) // вернет true
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false
  */
-function isAllTrue(array, fn) {}
+function isAllTrue(array, fn) {
+  if (!Array.isArray(array) || !array.length) {
+    throw new Error('empty array');
+  } else if (typeof fn !== 'function') {
+    throw new Error('fn is not a function');
+  }
+
+  for (const item of array) {
+    if (!fn(item)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+try {
+  isAllTrue([1, 2, 3, 4, 5], (n) => n < 10);
+} catch (e) {
+  console.log(e.message);
+}
+
+try {
+  isAllTrue([100, 2, 3, 4, 5], (n) => n < 10);
+} catch (e) {
+  console.log(e.message);
+}
 
 /*
  Задание 2:
@@ -34,7 +60,33 @@ function isAllTrue(array, fn) {}
    isSomeTrue([1, 2, 30, 4, 5], n => n > 20) // вернет true
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
-function isSomeTrue(array, fn) {}
+function isSomeTrue(array, fn) {
+  if (!Array.isArray(array) || !array.length) {
+    throw new Error('empty array');
+  } else if (typeof fn !== 'function') {
+    throw new Error('fn is not a function');
+  }
+
+  for (const prop of array) {
+    if (fn(prop)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+try {
+  isSomeTrue([1, 2, 30, 4, 5], (n) => n > 20);
+} catch (e) {
+  console.log(e.message);
+}
+
+try {
+  isSomeTrue([1, 2, 3, 4, 5], (n) => n > 20);
+} catch (e) {
+  console.log(e.message);
+}
 
 /*
  Задание 3:
@@ -47,7 +99,35 @@ function isSomeTrue(array, fn) {}
  3.3: Необходимо выбрасывать исключение в случаях:
    - fn не является функцией (с текстом "fn is not a function")
  */
-function returnBadArguments(fn, ...args) {}
+function returnBadArguments(fn, ...args) {
+  if (typeof fn !== 'function') {
+    throw new Error('fn is not a function');
+  }
+
+  const newArr = [];
+
+  for (const item of args) {
+    try {
+      fn(item);
+    } catch (e) {
+      e.message;
+      newArr.push(item);
+    }
+  }
+
+  return newArr;
+}
+function foo(arg) {
+  if (typeof arg !== 'string') {
+    throw new Error('not string');
+  }
+}
+
+try {
+  returnBadArguments(foo, [1, 2, 3], 'string', 5, null);
+} catch (e) {
+  e.message;
+}
 
 /*
  Задание 4:
