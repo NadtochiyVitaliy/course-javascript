@@ -17,7 +17,7 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false
  */
 function isAllTrue(array, fn) {
-  const isArray = Object.prototype.toString.call(array) === '[object Array]';
+  const isArray = array instanceof Array;
   if (!isArray || !array.length) {
     console.log(isArray);
     throw new Error('empty array');
@@ -51,7 +51,7 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
  */
 function isSomeTrue(array, fn) {
-  const isArray = Object.prototype.toString.call(array) === '[object Array]';
+  const isArray = array instanceof Array;
   if (!isArray || !array.length) {
     console.log(isArray);
     throw new Error('empty array');
