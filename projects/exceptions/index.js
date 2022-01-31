@@ -53,7 +53,6 @@ function isAllTrue(array, fn) {
 function isSomeTrue(array, fn) {
   const isArray = array instanceof Array;
   if (!isArray || !array.length) {
-    console.log(isArray);
     throw new Error('empty array');
   } else if (typeof fn !== 'function') {
     throw new Error('fn is not a function');
